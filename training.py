@@ -9,6 +9,9 @@ from get_loader import get_loader
 from model import CNNtoRNN
 from torchvision.models.inception import Inception3, inception_v3
 
+from gtts import gTTS #Import Google Text to Speech
+from IPython.display import Audio #Import Audio method from IPython's Display Class
+
 
 
 def train():
@@ -99,4 +102,9 @@ def train():
 
 if __name__ == "__main__":
     train()
+
+tts = gTTS(' '.join(result)[:-5]) #Provide the string to convert to speech
+tts.save('1.wav') #save the string converted to speech as a .wav file
+sound_file = '1.wav'
+Audio(sound_file, autoplay=True)
 
