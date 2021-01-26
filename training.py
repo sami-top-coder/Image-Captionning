@@ -30,7 +30,6 @@ def train():
         num_workers=2,
     )
 
-    torch.backends.cudnn.benchmark = True # boosting performances of the model
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # tésta3ml GPU si valide si nn CPU
     load_model = True
     save_model = False
@@ -49,7 +48,7 @@ def train():
     # step = 0
 
     # initialize model, loss etc
-    model = CNNtoRNN(embed_size, hidden_size, vocab_size, num_layers).to(device) # création d'un modèle
+    model = Encodeur_Decodeur(embed_size, hidden_size, vocab_size, num_layers).to(device) # création d'un modèle
     criterion = nn.CrossEntropyLoss(ignore_index=dataset.vocab.stoi["<PAD>"])  # don't care about the pad index
     optimizer = optim.Adam(model.parameters(), lr=learning_rate) # Adam optimizer
 
